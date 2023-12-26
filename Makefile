@@ -14,8 +14,12 @@ EXEC = bilinear_scaling
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC) -lm
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(IDIR)
+
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 clean:
 	rm -f $(OBJDIR)/*.o $(EXEC)
+
