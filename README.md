@@ -1,5 +1,5 @@
 <h1>MPI Image Scaling Tool</h1>
-For NVIDIA CUDA implementation check out [this repository](https://github.com/denis-the-menace/cuda-image-scaling).
+For NVIDIA CUDA implementation check out <a href="https://github.com/denis-the-menace/cuda-image-scaling">this repository</a>.
 
 <h2>How to compile and run</h2>
 Install MPI C compiler for your system (openmpi package in most distributions).<br>
