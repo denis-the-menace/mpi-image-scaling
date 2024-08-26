@@ -1,17 +1,3 @@
-/**
- *
- * CENG342 Project-1
- *
- * Downscaling
- *
- * Usage:  main <input.jpg> <output.jpg>
- *
- * @group_id 00
- * @author  your names
- *
- * @version 1.0, 02 April 2022
- */
-
 #include <math.h>
 #include <mpi.h>
 #include <stdio.h>
@@ -37,9 +23,8 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-  if (argc < 3) {
-    printf("Usage: (mpirun -n [number_of_cores]) %s [image_filename] "
-           "[output_filename]\n",
+  if (argc < 5) {
+    printf("Usage: mpirun -n [number_of_cores] [executable_filename] [image_filename] [output_filename] [scale_factor_x] [scale_factor_y]\n",
            argv[0]);
     MPI_Finalize();
     return 1;
@@ -50,8 +35,8 @@ int main(int argc, char *argv[]) {
     double time1 = MPI_Wtime();
     image = stbi_load(argv[1], &width, &height, &bpp, 0);
 
-    scale_x = 2;
-    scale_y = 2;
+    scale_x = argv[3] == NULL ? 1 : atof(argv[3]);
+    scale_y = argv[4] == NULL ? 1 : atof(argv[4]);
 
     new_width = width / scale_x;
     new_height = height / scale_y;
